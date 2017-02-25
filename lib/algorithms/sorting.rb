@@ -58,22 +58,39 @@ module Algorithms
     # element to be sorted.  once you find an element less than the value of the
     # item being sorted (or you're at the beginning of the list) the list is sorted.
     ##
-    def self.insertion_sort(list)
+    def self.insertion_sort(list, start_index = 0, gap = 1)
       passes = list.count
 
       passes.times do |pass|
-        next if pass == 0 # one item list is sorted
+        next if pass == start_index # one item list is sorted
 
         index = pass
-        while index > 0 do
-          if list[index] < list[index - 1]
-            list[index], list[index - 1] = list[index - 1], list[index]
+        while index > start_index do
+          if list[index] < list[index - gap]
+            list[index], list[index - gap] = list[index - gap], list[index]
           else
             break
           end
 
-          index -= 1
+          index -= gap
         end
+      end
+      return list
+    end
+
+    ##
+    # the shell sort builds on the insertion sort.  rather than doing an insertion
+    # sort on one list, the list is split up into sublists and each sublist is
+    # sorted with an insertion sort method.
+    ##
+    def self.shell_sort(list)
+      sublists = list.count / 2
+
+      while sublists > 0
+        sublists.times do |i|
+          list = insertion_sort(list, i, sublists)
+        end
+        sublists = sublists / 2
       end
       return list
     end
