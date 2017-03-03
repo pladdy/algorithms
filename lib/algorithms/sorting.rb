@@ -109,7 +109,7 @@ module Algorithms
       first_merge = merge_sort(first_half)
       second_merge = merge_sort(second_half)
 
-      merge(first_merge, second_merge)
+      return merge(first_merge, second_merge)
     end
   end
 end
