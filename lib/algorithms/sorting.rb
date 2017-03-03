@@ -94,5 +94,57 @@ module Algorithms
       end
       return list
     end
+
+    ##
+    # divide and conquer algorithm that splits a list in half until it makes the
+    # smallest list (1, sorted by default), and then beings to merge the items.
+    ##
+    def self.merge_sort(list)
+      return list if list.count <= 1 # base case
+
+      half_way = list.length / 2
+      first_half = list.slice(0, half_way)
+      second_half = list.slice(half_way, list.length)
+
+      first_merge = merge_sort(first_half)
+      second_merge = merge_sort(second_half)
+
+      merge(first_merge, second_merge)
+    end
   end
+end
+
+##
+# merge sort helpers
+##
+def add_to_and_remove_from!(add_to, remove_from)
+  add_to.push(remove_from[0])
+  remove_from.slice!(0)
+end
+
+def drain_to_from(drain_to, drain_from)
+  while not_empty?(drain_from)
+    add_to_and_remove_from!(drain_to, drain_from)
+  end
+end
+
+def merge(first_list, second_list)
+  sorted = []
+
+  while not_empty?(first_list) && not_empty?(second_list)
+    if first_list[0] <= second_list[0]
+      add_to_and_remove_from!(sorted, first_list)
+    else
+      add_to_and_remove_from!(sorted, second_list)
+    end
+  end
+
+  drain_to_from(sorted, first_list)
+  drain_to_from(sorted, second_list)
+
+  return sorted
+end
+
+def not_empty?(list)
+  return ! list.empty?
 end
