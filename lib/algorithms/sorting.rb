@@ -122,7 +122,7 @@ def add_to_and_remove_from!(add_to, remove_from)
   remove_from.slice!(0)
 end
 
-def drain_to_from(drain_to, drain_from)
+def drain_to_from!(drain_to, drain_from)
   while not_empty?(drain_from)
     add_to_and_remove_from!(drain_to, drain_from)
   end
@@ -139,8 +139,8 @@ def merge(first_list, second_list)
     end
   end
 
-  drain_to_from(sorted, first_list)
-  drain_to_from(sorted, second_list)
+  drain_to_from!(sorted, first_list)
+  drain_to_from!(sorted, second_list)
 
   return sorted
 end
