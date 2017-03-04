@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'algorithms/sorting/helpers'
+
 module Algorithms
   module Sorting
     ##
@@ -111,40 +113,25 @@ module Algorithms
 
       return merge(first_merge, second_merge)
     end
-  end
-end
 
-##
-# merge sort helpers
-##
-def add_to_and_remove_from!(add_to, remove_from)
-  add_to.push(remove_from[0])
-  remove_from.slice!(0)
-end
+    ##
+    # quick sort is another divide and conquer sort that's also recursive.
+    # however it's speed is heavily depdendent on picking the a good pivot
+    # item to sort around.  if an item is picked that is a bad pivot item you
+    # end up doing more comparisons then you'd have to.
+    ##
+    def self.quick_sort(list, low = 0, high = nil)
+      return list unless list.length > 1
 
-def drain_to_from!(drain_to, drain_from)
-  while not_empty?(drain_from)
-    add_to_and_remove_from!(drain_to, drain_from)
-  end
-end
+      high = list.length - 1 if high.nil?
 
-def merge(first_list, second_list)
-  sorted = []
+      if low < high
+        partition_index = partition(list, low, high)
+        quick_sort(list, low, partition_index - 1)
+        quick_sort(list, partition_index + 1, high)
+      end
 
-  while not_empty?(first_list) && not_empty?(second_list)
-    if first_list[0] <= second_list[0]
-      add_to_and_remove_from!(sorted, first_list)
-    else
-      add_to_and_remove_from!(sorted, second_list)
+      return list
     end
   end
-
-  drain_to_from!(sorted, first_list)
-  drain_to_from!(sorted, second_list)
-
-  return sorted
-end
-
-def not_empty?(list)
-  return ! list.empty?
 end

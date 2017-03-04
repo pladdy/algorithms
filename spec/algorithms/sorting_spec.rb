@@ -61,4 +61,12 @@ describe Algorithms::Sorting do
       end
     end
   end
+
+  describe '#quick_sort' do
+    it 'should sort numbers ascending' do
+      unsorted.each_index do |i|
+        expect(Algorithms::Sorting.quick_sort(unsorted[i])).to eq(sorted[i])
+      end
+    end
+  end
 end
