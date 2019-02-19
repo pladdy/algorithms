@@ -9,7 +9,7 @@
 #   there are examples out there, but not sure at this time
 # how about in clojure?
 #   a protocol?  would that even make sense?  not sure
-module Algorithms
+module DataStructures
   class Stack
     attr_accessor :items
 

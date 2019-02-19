@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'algorithms/sorting/helpers'
+require 'algorithms/helpers'
 
 module Algorithms
   module Sorting

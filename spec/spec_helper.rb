@@ -1,5 +1,7 @@
 require "bundler/setup"
+
 require "algorithms"
+require "data_structures"
 
 RSpec.configure do |config|
   config.expect_with :rspec do |c|

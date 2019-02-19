@@ -1,7 +1,2 @@
-require "algorithms/version"
-require "algorithms/stack"
-require "algorithms/sorting"
-
-module Algorithms
-
-end
+require 'algorithms/sorting'
+require 'algorithms/recursion'

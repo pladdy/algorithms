@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'algorithms/version'
+require 'version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "algorithms"
-  spec.version       = Algorithms::VERSION
+  spec.name          = "ruby-scratch"
+  spec.version       = RubyScratch::VERSION
   spec.authors       = ["Matt Pladna"]
   spec.email         = ["pladdypants@gmail.com"]
 
-  spec.summary       = %q{Me playing with algorithms and data structures.}
+  spec.summary       = %q{Me playing with ruby.}
   spec.description   = %q{Sorting, searching, etc.  Data structures and algorithms are here.}
   spec.license       = "MIT"
 
@@ -29,7 +29,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.14"
+  spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "yard"
 end
