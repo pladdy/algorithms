@@ -2,6 +2,9 @@
 
 all: dependencies vendor test
 
+cover: test
+	open coverage/index.html
+
 dependencies:
 	gem install bundler
 
