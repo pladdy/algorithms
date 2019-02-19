@@ -1,10 +1,14 @@
 require "bundler/setup"
 
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add_filter 'vendor/'
+end
 
-require 'codecov'
-SimpleCov.formatter = SimpleCov::Formatter::Codecov
+if ENV['CI'] == 'true'
+  require 'codecov'
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+end
 
 require "algorithms"
 require "data_structures"
