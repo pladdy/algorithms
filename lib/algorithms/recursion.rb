@@ -1,19 +1,19 @@
 ##
-# recursive functions must
-# - have a base case
-# - must move towards the base case each recursion
-# - must call itself
-
 # make a 'sum' function that takes a list of numbers and adds them up
 # assumes you're passing only number-like types
 # note: Array.sum() does this already
 module Algorithms
+  # Recursive functions must
+  # - have a base case
+  # - must move towards the base case each recursion
+  # - must call itself
+  #
   module Recursion
     def self.sum(*numbers)
-      sum_array(numbers.flatten)
+      Algorithms::Recursion.sum_array(numbers.flatten)
     end
 
-    def sum_array(numbers)
+    def self.sum_array(numbers)
       return numbers[0] if numbers.count == 1 # base case
       return numbers.pop + sum(numbers)       # recurse
     end
@@ -43,8 +43,9 @@ module Algorithms
       return sequence
     end
 
-    # fibonacci sequence, recursive
-    # can you return the full sequence in a recursive fn?
+    # Recursive implementation of the fibonacci sequence.
+    # @return [Integer] the sum of the sequence
+    #
     def self.fibr(length)
       if length == 0
         return 0
@@ -55,8 +56,9 @@ module Algorithms
       end
     end
 
-    # reverse string
-    # note in ruby: .reverse
+    # Given a string, return it's reverse
+    # @note just use `.reverse`
+    #
     def self.reverse(s)
       characters = s.split(//)
       if characters.length == 1
@@ -66,8 +68,16 @@ module Algorithms
       end
     end
 
+    # Given a string, return true if it's a palindrome (when reversed it's the same word)
+    #
+    # @return [Bool] returns true or false
+    #
+    # @example
+    #   Algorithms::Recursive.palindrome?("racecar") # returns true
+    #   Algorithms::Recursive.palindrome?("foo") # returns false
+    #
     def self.palindrome?(s)
-      s == self.reverse
+      s == self.reverse(s)
     end
   end
 end

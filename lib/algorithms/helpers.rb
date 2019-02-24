@@ -33,10 +33,6 @@ def not_empty?(list)
   return ! list.empty?
 end
 
-def not_nil?(value)
-  return ! value.nil?
-end
-
 ##
 # quick sort helper
 ##
