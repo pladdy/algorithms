@@ -1,49 +1,45 @@
 #!/usr/bin/env ruby
 
-# Questions:
-# why not just use an array?
-#   array would work but it's more flexible and there could be scenarios where i
-#   shoot myself in the foot.  with a class like this i limit myself to certain
-#   methods
-# how would i implement a stack in go?
-#   there are examples out there, but not sure at this time
-# how about in clojure?
-#   a protocol?  would that even make sense?  not sure
 module DataStructures
   class Stack
-    attr_accessor :items
+    attr_accessor :items, :top
 
     def initialize
-      @items = []
+      @size = 0
     end
 
-    def take
-      @items.pop()
+    # Return the top item of the stack.
+    #
+    def pop
+      to_pop = @top
+      @top = to_pop.next
+
+      @size -= 1
+      return to_pop.data
     end
 
-    def add(item)
-      @items = @items.push(item)
+    # Takes an arguemnt and adds it to the stack.
+    #
+    def push(item)
+      new_top = Stack::Item.new(item)
+      if @top != nil
+        new_top.next = @top
+      end
+
+      @size += 1
+      @top = new_top
     end
 
     def size
-      @items.count
+      @size
     end
 
-    def to_binary(number_to_convert)
-      remainders = Stack.new
+    class Item
+      attr_accessor :data, :next
 
-      while number_to_convert > 0 do
-        remainder = number_to_convert % 2
-        remainders.add(remainder)
-        number_to_convert = number_to_convert / 2 # could be optimized by shifting
+      def initialize(data)
+        @data = data
       end
-
-      binary_string = ""
-      while remainders.size() > 0
-        binary_string += remainders.take.to_s
-      end
-
-      return binary_string
     end
   end
 end

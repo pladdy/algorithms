@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/pladdy/ruby-scratch.svg?branch=master)](https://travis-ci.org/pladdy/ruby-scratch)
+
 # ruby-scratch
 
 Me practicing ruby with data structures and algorithms.
