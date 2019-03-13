@@ -2,7 +2,9 @@
 
 require 'algorithms/helpers'
 
+# Algorithms module for encapsulating different types of algorithms
 module Algorithms
+  # Sorting module for sorting algorithm implementations
   module Sorting
     ##
     # terrible algorithm to use for sorting in general (unless you know some how
@@ -15,10 +17,11 @@ module Algorithms
       passes.times do |pass|
         swaps = 0
         list.each_index do |index|
-          break if index + 1 == passes # on last index, already compared/swapped
+          next_index = index + 1
+          break if next_index == passes # on last index, already compared/swapped
 
-          if list[index] > list[index + 1]
-            list[index], list[index + 1] = list[index + 1], list[index]
+          if list[index] > list[next_index]
+            list[index], list[next_index] = list[next_index], list[index]
             swaps += 1
           end
         end
@@ -68,8 +71,9 @@ module Algorithms
 
         index = pass
         while index > start_index do
-          if list[index] < list[index - gap]
-            list[index], list[index - gap] = list[index - gap], list[index]
+          index_gap = index - gap
+          if list[index] < list[index_gap]
+            list[index], list[index_gap] = list[index_gap], list[index]
           else
             break
           end
@@ -116,19 +120,23 @@ module Algorithms
 
     ##
     # quick sort is another divide and conquer sort that's also recursive.
-    # however it's speed is heavily depdendent on picking the a good pivot
+    # however it's speed is heavily depdendent on picking a good pivot
     # item to sort around.  if an item is picked that is a bad pivot item you
     # end up doing more comparisons then you'd have to.
     ##
     def self.quick_sort(list, low = 0, high = nil)
-      return list unless list.length > 1
+      high = list.length - 1
+      quick_sort_partition(list, low, high)
+      return list
+    end
 
-      high = list.length - 1 if high.nil?
+    def self.quick_sort_partition(list, low, high)
+      return list unless list.length > 1
 
       if low < high
         partition_index = partition(list, low, high)
-        quick_sort(list, low, partition_index - 1)
-        quick_sort(list, partition_index + 1, high)
+        quick_sort_partition(list, low, partition_index - 1)
+        quick_sort_partition(list, partition_index + 1, high)
       end
 
       return list

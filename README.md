@@ -10,5 +10,6 @@ Me practicing ruby with data structures and algorithms.
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
 ## References
+- Code Quality: https://github.com/whitesmith/rubycritic
 - Docs: https://github.com/lsegal/yard
 - Testing: https://github.com/rspec/rspec

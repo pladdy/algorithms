@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
 
+# DataStructures contains implementation for specific data structures
 module DataStructures
+  # Stack is a structure that supports a list of items that are "stacked" on each other and retrieved in reverse
+  # order of how they're put in the list.  First in Last out, like a stack of plates.
   class Stack
-    attr_accessor :items, :top
+    attr_reader :items, :top
 
     # Create a new, empty, stack.
     #
@@ -58,7 +61,8 @@ module DataStructures
     # Stack::Item represents an Object that can be stacked.
     #
     class Item
-      attr_accessor :data, :next
+      attr_reader :data
+      attr_accessor :next
 
       def initialize(data)
         @data = data

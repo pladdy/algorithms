@@ -5,6 +5,9 @@ all: dependencies vendor test
 cover: test
 	open coverage/index.html
 
+critic:
+	bundle exec rubycritic lib spec/spec_helper -f html
+
 dependencies:
 	gem install bundler
 
