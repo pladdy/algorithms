@@ -18,5 +18,5 @@ docs:
 rspec test: vendor
 	bundle exec rspec spec/
 
-vendor:
+vendor: ruby_scratch.gemspec
 	bundle install --path $@
